@@ -2,10 +2,12 @@ FROM python:3.9-slim
 
 WORKDIR /code
 
-COPY ./requirements.txt /code/requirements.txt
+# Cambia esta línea para apuntar a la ruta correcta desde la raíz del repo
+COPY ./backend/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY ./app /code/app
+# Cambia esta línea para apuntar a la ruta correcta desde la raíz del repo
+COPY ./backend/app /code/app
 
 # Puerto que FastAPI usará (uvicorn)
 EXPOSE 8000

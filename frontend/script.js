@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ¡¡¡IMPORTANTE!!! Cambia esta URL por la de tu API backend desplegada en Coolify.
   // Ejemplo DEV: const apiUrl = 'https://api-dev.tu-dominio.coolify.app';
   // Ejemplo PROD: const apiUrl = 'https://api.tu-dominio.coolify.app';
-  const apiUrl = "http://localhost:8000"; // <-- CAMBIA ESTO (O usa la URL de tu backend)
+  const apiUrl = "http://hsswkgos8wwgoc8gw084koso.20.55.28.0.sslip.io:4000/"; // <-- CAMBIA ESTO (O usa la URL de tu backend)
 
   // --- REFERENCIAS DEL DOM ---
   const taskInput = document.getElementById("taskInput");

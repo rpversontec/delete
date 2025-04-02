@@ -12,7 +12,8 @@ app = FastAPI()
 # Configurar CORS para permitir solicitudes desde el frontend
 # Ajusta origins según la URL de tu frontend en Coolify
 origins = [
-    "http://localhost",  # Para desarrollo local si aplica
+    # Para desarrollo local si aplica
+    "http://k4csg48gko88ssks080c4k0w.20.55.28.0.sslip.io/",
     "http://tu-frontend-url.coolify.app",  # URL del frontend desplegado
     "https://tu-frontend-url.coolify.app",
 ]

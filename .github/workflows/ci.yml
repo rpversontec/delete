@@ -1,0 +1,57 @@
+name: CI Pipeline Backend
+
+on:
+  push:
+    branches: [ main ] # O la rama que quieras desplegar
+    paths: # Solo se ejecuta si cambian archivos en backend/
+      - 'backend/**'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend # Ejecutar comandos dentro de la carpeta backend
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Run tests
+      # Necesitarías configurar una BD temporal para pruebas de integración
+      # o enfocarte en pruebas unitarias que no toquen la BD real aquí.
+      run: pytest
+
+  build-and-push:
+    needs: test # Solo se ejecuta si el job 'test' es exitoso
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    permissions:
+      contents: read
+      packages: write # Permiso para escribir en GHCR
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }} # Token automático de GitHub Actions
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./backend # Ruta al Dockerfile
+        push: true
+        tags: ghcr.io/${{ github.repository_owner }}/mi-todo-app-backend:${{ github.sha }} # Etiqueta con SHA del commit
+        # También podrías añadir una etiqueta 'latest' si lo deseas
+        # tags: |
+        #   ghcr.io/${{ github.repository_owner }}/mi-todo-app-backend:${{ github.sha }}
+        #   ghcr.io/${{ github.repository_owner }}/mi-todo-app-backend:latest

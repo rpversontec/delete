@@ -15,6 +15,7 @@ origins = [
     # Para desarrollo local si aplica
     "http://k4csg48gko88ssks080c4k0w.20.55.28.0.sslip.io/",
     "http://tu-frontend-url.coolify.app",
+    "https://k4csg48gko88ssks080c4k0w.20.55.28.0.sslip.io/"
     "http://localhost",  # URL del frontend desplegado
     "https://tu-frontend-url.coolify.app",
 ]

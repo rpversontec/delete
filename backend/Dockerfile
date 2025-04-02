@@ -10,8 +10,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./backend/app /code/app
 
 # Puerto que FastAPI usará (uvicorn)
-EXPOSE 4000
+EXPOSE 8000
 
 # Comando para ejecutar la aplicación
 # Escucha en 0.0.0.0 para ser accesible desde fuera del contenedor
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "4000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
